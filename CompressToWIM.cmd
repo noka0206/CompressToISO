@@ -41,6 +41,24 @@ goto Getting_ready
 title Ready to compress to wim file.
 cls
 tools\dism /capture-image /imagefile:%userinputforcompresswheretoput%\compressed.wim /capturedir:%userinputforcompress% /name=DESC
+
+if NOT exist %userinputforcompresswheretoput%\compressed.wim goto FAILURE
+
+if exist %userinputforcompresswheretoput%\compressed.wim goto Success
+
+:FAILURE
+cls
+color 0c
+title FAILURE :(
+echo We reported during compress to wim.
+echo Press any key to exit...
+pause>nul
+exit
+
+:Success
+cls
+title Successful!
+echo We Successfully to make wim!
 echo Press any key to exit...
 pause>nul
 exit
