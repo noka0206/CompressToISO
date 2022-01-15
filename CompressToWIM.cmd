@@ -20,9 +20,11 @@ goto UIFC
 :UIFC
 cls
 title Please enter folder or drive which you want to compress. but you can't compress the file. For files, you must create a folder and put it in a folder and compress the folder.
+echo.
 echo =============================================================================================================================================================================
 echo Please enter folder or drive which you want to compress. but you can't compress the file. For files, you must create a folder and put it in a folder and compress the folder.
 echo =============================================================================================================================================================================
+echo.
 set /p userinputforcompress=
 
 goto UIFCWTP
@@ -30,9 +32,11 @@ goto UIFCWTP
 :UIFCWTP
 cls
 title Please enter to where to put the wim file.
+echo.
 echo ===========================================
 echo Please enter to where to put the wim file.
 echo ===========================================
+echo.
 set /p userinputforcompresswheretoput=
 
 goto Getting_ready
