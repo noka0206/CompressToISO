@@ -21,11 +21,10 @@ goto UIFC
 cls
 title Please enter folder or drive which you want to compress. but you can't compress the file. For files, you must create a folder and put it in a folder and compress the folder.
 echo.
-echo =============================================================================================================================================================================
-echo Please enter folder or drive which you want to compress. but you can't compress the file. For files, you must create a folder and put it in a folder and compress the folder.
-echo =============================================================================================================================================================================
-echo.
-set /p userinputforcompress=
+echo ===========================================================================================================================================
+echo Please enter folder or drive which you want to compress. For files, you must create a folder and put it in a folder and compress the folder.
+echo ===========================================================================================================================================
+set /p userinputforcompresswhat=
 
 goto UIFCWTP
 
@@ -36,7 +35,6 @@ echo.
 echo ===========================================
 echo Please enter to where to put the wim file.
 echo ===========================================
-echo.
 set /p userinputforcompresswheretoput=
 
 goto Getting_ready
@@ -44,8 +42,8 @@ goto Getting_ready
 :Getting_ready
 title Ready to compress to wim file.
 cls
-tools\dism /capture-image /imagefile:%userinputforcompresswheretoput%\compressed.wim /capturedir:%userinputforcompress% /name=DESC
-
+tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --check --threads=8
+cls
 if NOT exist %userinputforcompresswheretoput%\compressed.wim goto FAILURE
 
 if exist %userinputforcompresswheretoput%\compressed.wim goto Success
@@ -62,7 +60,9 @@ exit
 :Success
 cls
 title Successful!
-echo We Successfully to make wim!
+echo We successful to make wim!
 echo Press any key to exit...
 pause>nul
+cd /d %userinputforcompresswheretoput%
+explorer .
 exit
