@@ -42,7 +42,7 @@ goto Getting_ready
 :Getting_ready
 title Ready to compress to wim file.
 cls
-tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --check --threads=8
+tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --check --threads=max
 cls
 if NOT exist %userinputforcompresswheretoput%\compressed.wim goto FAILURE
 
