@@ -23,6 +23,7 @@ title Please enter folder or drive which you want to compress. but you can't com
 echo.
 echo ===========================================================================================================================================
 echo Please enter folder or drive which you want to compress. For files, you must create a folder and put it in a folder and compress the folder.
+echo ENSURE THAT DERECTORY HAS NO SPACE!!! OTHERWISE IT WILL NOT WORK!!
 echo ===========================================================================================================================================
 set /p userinputforcompresswhat=
 
@@ -34,6 +35,7 @@ title Please enter to where to put the wim file.
 echo.
 echo ===========================================
 echo Please enter to where to put the wim file.
+echo AGAIN, ENSURE THAT DERECTORY HAS NO SPACE!!! OTHERWISE IT WILL NOT WORK!!
 echo ===========================================
 set /p userinputforcompresswheretoput=
 
