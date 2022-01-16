@@ -35,7 +35,7 @@ title Please enter to where to put the wim file.
 echo.
 echo ===========================================
 echo Please enter to where to put the wim file.
-echo AGAIN, ENSURE THAT DERECTORY HAS NO SPACE OTHERWISE IT WILL NOT WORK
+echo AGAIN, ENSURE THAT DERECTORY HAS NO SPACE OTHERWISE IT WILL NOT WORK.
 echo ===========================================
 set /p userinputforcompresswheretoput=
 
@@ -44,7 +44,7 @@ goto Getting_ready
 :Getting_ready
 title Ready to compress to wim file.
 cls
-tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --check --threads=8
+tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --threads=8 --nocheck
 cls
 if NOT exist %userinputforcompresswheretoput%\compressed.wim goto FAILURE
 
