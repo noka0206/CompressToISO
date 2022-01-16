@@ -45,11 +45,13 @@ goto Getting_ready
 title Ready to compress to wim file.
 cls
 tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --check --threads=8
+cls
 if NOT exist %userinputforcompresswheretoput%\compressed.wim goto FAILURE
 
 if exist %userinputforcompresswheretoput%\compressed.wim goto Success
 
 :FAILURE
+cls
 color 0c
 title FAILURE :(
 echo We reported during compress to wim.
