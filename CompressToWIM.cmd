@@ -56,7 +56,7 @@ echo Please type Compress Method.
 echo LZX - Default option. Provides a good balance between size, performance, and resource utilization
 echo LZMS - Most compact option. The resulting media size will be as smallest as possible. but it will use more resources.
 echo XPRESS - Quickest option. Lean on resource utilsation. but it will not as compact as LZX or LZMS
-set /p CM= ^type LZMS if you don't know about this. : 
+set /p CM= ^type XPRESS if you don't know about this. : 
 if "CM"=="" exit
 
 goto Getting_ready
