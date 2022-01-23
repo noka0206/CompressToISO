@@ -14,18 +14,16 @@ erase bin.zip /s /q
 rename bin tools
 goto UIFC
 
-rename bin tools
-goto UIFC
-
 :UIFC
 cls
-title Please enter folder or drive which you want to compress. but you can't compress the file. For files, you must create a folder and put it in a folder and compress the folder.
+title Please enter folder or drive which you want to compress. For files, you must create a folder and put it in a folder and compress the folder.
 echo.
 echo ===========================================================================================================================================
 echo Please enter folder or drive which you want to compress. For files, you must create a folder and put it in a folder and compress the folder.
 echo ENSURE THAT DERECTORY HAS NO SPACE OTHERWISE IT WILL NOT WORK.
 echo ===========================================================================================================================================
 set /p userinputforcompresswhat=
+if "%userinputforcompresswhat%"=="" exit
 
 goto UIFCWTP
 
@@ -38,13 +36,38 @@ echo Please enter to where to put the wim file.
 echo AGAIN, ENSURE THAT DERECTORY HAS NO SPACE OTHERWISE IT WILL NOT WORK.
 echo ===========================================
 set /p userinputforcompresswheretoput=
+if "%userinputforcompresswheretoput%"=="" exit
+
+goto COMPRESS_THREADS
+
+:COMPRESS_THREADS
+cls
+echo.
+echo Please enter your PC's thread
+echo Example : if PC has 2 Core and 2 Thread, I'd recommended 8 Thread
+set /p THREAD=
+if "THREAD"=="" exit
+goto C_M
+
+:C_M
+cls
+echo.
+echo Please type Compress Method.
+echo LZX - Default option. Provides a good balance between size, performance, and resource utilization
+echo LZMS - Most compact option. The resulting media size will be as smallest as possible. but it will use more resources.
+echo XPRESS - Quickest option. Lean on resource utilsation. but it will not as compact as LZX or LZMS
+set /p CM= ^type LZMS if you don't know about this. : 
+if "CM"=="" exit
 
 goto Getting_ready
 
 :Getting_ready
 title Ready to compress to wim file.
 cls
-tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=LZX --threads=8 --nocheck
+echo ========
+echo Compressing
+echo ========
+tools\wimlib-imagex.exe capture %userinputforcompresswhat% %userinputforcompresswheretoput%\compressed.wim NAME DESC --compress=%CM% --threads=%THREAD% --nocheck
 cls
 if NOT exist %userinputforcompresswheretoput%\compressed.wim goto FAILURE
 
